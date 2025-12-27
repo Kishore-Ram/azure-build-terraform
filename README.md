@@ -51,33 +51,3 @@ graph TD
     classDef future fill:#f8f9fa,stroke:#6c757d,stroke-width:2px,stroke-dasharray: 5 5;
     class RG,VNet,SN_AKS,SN_Mgmt existing;
     class FUTURE_AKS,FUTURE_ILB,FUTURE_Bastion,FUTURE_ACR,FUTURE_PLS,FUTURE_FD future;
-
-
-## 🛠️ Prerequisites
-
-Before running the code, ensure you have the following installed:
-* [Azure CLI](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli) (version 2.40+)
-* [Terraform](https://www.terraform.io/downloads) (version 1.3+)
-* A valid **Azure Subscription** (User must have `Contributor` access).
-
-## 🚀 Deployment Instructions
-
-### 1. Clone & Initialize
-Open your terminal in the repository root and run:
-```bash
-# Login to Azure
-az login
-
-# Initialize Terraform (Downloads the Azure Provider)
-terraform init
-
-📂 Directory Structure
-.
-├── modules/                 # Reusable Terraform Modules
-│   ├── resource_group/      # RG Logic
-│   └── networking/          # VNet & Subnet Logic
-├── main.tf                  # Root Orchestrator
-├── variables.tf             # Input Definitions
-├── outputs.tf               # ID/Name Outputs
-└── terraform.tfvars         # Your Variable Values
-
