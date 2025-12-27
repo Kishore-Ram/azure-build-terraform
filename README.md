@@ -51,12 +51,3 @@ graph TD
     classDef future fill:#f8f9fa,stroke:#6c757d,stroke-width:2px,stroke-dasharray: 5 5;
     class RG,VNet,SN_AKS,SN_Mgmt existing;
     class FUTURE_AKS,FUTURE_ILB,FUTURE_Bastion,FUTURE_ACR,FUTURE_PLS,FUTURE_FD future;
-
-##🚀 Project Overview
-We are building a Private AKS Architecture. The key design principle is "Security through Isolation":
-
-No Public Access: The AKS Cluster API and Ingress are not exposed to the public internet directly.
-
-Controlled Ingress: Traffic enters via Azure Front Door (Global) -> Private Link Service -> Internal Load Balancer.
-
-Secure Management: Operations are performed via a Bastion Host in a dedicated subnet.
