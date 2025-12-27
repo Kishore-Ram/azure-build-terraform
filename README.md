@@ -52,7 +52,6 @@ graph TD
     class RG,VNet,SN_AKS,SN_Mgmt existing;
     class FUTURE_AKS,FUTURE_ILB,FUTURE_Bastion,FUTURE_ACR,FUTURE_PLS,FUTURE_FD future;
 
-    ---
 
 ## 🛠️ Prerequisites
 
