@@ -2,6 +2,10 @@
 
 This repository contains the Terraform Infrastructure-as-Code (IaC) to deploy a production-grade, secure Azure Kubernetes Service (AKS) environment.
 
+# Azure AKS Secure Build - Terraform
+
+This repository contains the Terraform Infrastructure-as-Code (IaC) to deploy a production-grade, secure Azure Kubernetes Service (AKS) environment.
+
 ## 🏗️ Architecture Diagram
 
 ```mermaid
