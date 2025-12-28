@@ -17,3 +17,25 @@ module "networking" {
   subnet_bastion_cidr = var.subnet_bastion_cidr
   tags                = var.tags
 }
+
+module "acr" {
+  source   = "./modules/acr"
+  acr_name = var.acr_name
+  rg_name  = module.resource_group.rg_name
+  location = module.resource_group.location
+  sku      = "Standard"
+  tags     = var.tags
+}
+
+module "vm" {
+  source         = "./modules/virtual_machine"
+  vm_name        = "vm-jumpbox-01"
+  rg_name        = module.resource_group.rg_name
+  location       = module.resource_group.location
+  subnet_id      = module.networking.bastion_subnet_id
+  tags           = var.tags
+  
+  # Auth details
+  admin_username = "azureuser"
+  admin_password = var.vm_admin_password
+}
