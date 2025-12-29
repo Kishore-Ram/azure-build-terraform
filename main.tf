@@ -40,3 +40,34 @@ module "vm" {
   admin_username = "azureuser"
   admin_password = var.vm_admin_password
 }
+
+# ---------------------------------------------------------
+# AKS CLUSTER (Private)
+# ---------------------------------------------------------
+module "aks" {
+  source     = "./modules/aks"
+  
+  # Basic Settings
+  aks_name   = "aks-demo-cluster-001"
+  rg_name    = module.resource_group.rg_name
+  location   = module.resource_group.location
+  tags       = var.tags
+
+  # Networking (Critical for Private Cluster)
+  # We plug it into the AKS Subnet we created in the networking module
+  subnet_id  = module.networking.aks_subnet_id
+
+  # Optional Overrides (defaults are in modules/aks/variables.tf)
+  vm_size    = "Standard_DC2as_v5"
+  node_count = 1
+}
+
+# ---------------------------------------------------------
+# PERMISSION: AKS -> ACR
+# ---------------------------------------------------------
+# This allows the AKS nodes to pull images from your Registry
+resource "azurerm_role_assignment" "aks_to_acr" {
+  scope                = module.acr.acr_id
+  role_definition_name = "AcrPull"
+  principal_id         = module.aks.kubelet_identity_object_id
+}
