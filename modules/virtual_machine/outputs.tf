@@ -1,6 +1,8 @@
-output "jumpbox_public_ip" {
-  value = module.vm.public_ip
+# We reference the RESOURCE, not the module
+output "public_ip" {
+  value = azurerm_public_ip.pip.ip_address
 }
-output "jumpbox_ssh_command" {
-  value = module.vm.ssh_command
+
+output "ssh_command" {
+  value = "ssh azureuser@${azurerm_public_ip.pip.ip_address}"
 }
