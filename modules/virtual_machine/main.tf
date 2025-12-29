@@ -28,7 +28,7 @@ resource "azurerm_linux_virtual_machine" "vm" {
   name                            = var.vm_name
   resource_group_name             = var.rg_name
   location                        = var.location
-  size                            = "Standard_DS2_v2" # B2s is better for running Docker/K8s tools
+  size                            = "Standard_DC1s_v3" # B2s is better for running Docker/K8s tools
   admin_username                  = var.admin_username
   admin_password                  = var.admin_password
   disable_password_authentication = false # <--- ALLOW PASSWORD LOGIN
@@ -46,7 +46,7 @@ resource "azurerm_linux_virtual_machine" "vm" {
   source_image_reference {
     publisher = "Canonical"
     offer     = "0001-com-ubuntu-server-jammy"
-    sku       = "22_04-lts"
+    sku       = "22_04-lts-gen2"
     version   = "latest"
   }
 
