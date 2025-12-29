@@ -18,6 +18,7 @@ module "networking" {
   tags                = var.tags
 }
 
+/*
 module "acr" {
   source   = "./modules/acr"
   acr_name = var.acr_name
@@ -39,3 +40,4 @@ module "vm" {
   admin_username = "azureuser"
   admin_password = var.vm_admin_password
 }
+*/
