@@ -4,10 +4,10 @@
 location = "eastus"
 
 tags = {
-  Environment = "Demo"
-  Project     = "SecureAKS-Build"
+  Environment = "POC"
+  Project     = "AKS-FrontDoor-Build"
   CreatedBy   = "Terraform"
-  Owner       = "DevOps-Team"
+  Owner       = "Datta-Kishore"
 }
 
 # ---------------------------------------------------------
