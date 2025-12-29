@@ -41,4 +41,4 @@ acr_name = "acrkishoredemo2024"
 # VIRTUAL MACHINE (JUMPBOX)
 # ---------------------------------------------------------
 # Password Requirements: 12+ chars, 1 Uppercase, 1 Lowercase, 1 Number, 1 Special Char
-vm_admin_password = "ChangeMe1234!$"
+vm_admin_password = "Dattaswami2025$"
