@@ -1,50 +1,40 @@
-variable "location" 
-{ 
+variable "location" { 
     default = "East US" 
 }
 
-variable "resource_group_name" 
-{
-
+variable "resource_group_name" {
+  type = string
 }
 
-variable "vnet_name" 
-{
-
+variable "vnet_name" {
+  type = string
 }
 
-variable "vnet_cidr" 
-{
-
+variable "vnet_cidr" {
+  type = string
 }
 
-variable "subnet_aks_name" 
-{
-
+variable "subnet_aks_name" {
+  type = string
 }
 
-variable "subnet_aks_cidr" 
-{
-
+variable "subnet_aks_cidr" {
+  type = string
 }
 
-variable "subnet_bastion_name" 
-{
-
+variable "subnet_bastion_name" {
+  type = string
 }
 
-variable "subnet_bastion_cidr" 
-{
-
+variable "subnet_bastion_cidr" {
+  type = string
 }
 
-variable "tags" 
-{ 
+variable "tags" {
     type = map(string) 
 }
 
-variable "acr_name" 
-{
+variable "acr_name" {
 
 }
 
