@@ -21,9 +21,9 @@ resource "azurerm_kubernetes_cluster" "aks" {
     vm_size        = var.vm_size
     vnet_subnet_id = var.subnet_id 
     
-    enable_auto_scaling = false
-    min_count           = null
-    max_count           = null
+#    enable_auto_scaling = false
+#    min_count           = null
+#    max_count           = null
   }
 
   identity {
@@ -42,7 +42,7 @@ network_profile {
     dns_service_ip    = "172.16.0.10"
     
     # 3. Docker Bridge (Just needs to be unique)
-    docker_bridge_cidr = "172.17.0.1/16"
+  #  docker_bridge_cidr = "172.17.0.1/16"
   }
 
   # 3. Grant ACR Pull Access (Using kubelet identity)
