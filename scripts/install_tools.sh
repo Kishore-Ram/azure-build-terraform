@@ -1,5 +1,6 @@
 #!/bin/bash
-# 1. Update OS
+
+# 1. Update OS and Install Base Dependencies
 apt-get update -y && apt-get upgrade -y
 apt-get install -y ca-certificates curl apt-transport-https lsb-release gnupg
 
@@ -17,10 +18,16 @@ curl -sL https://aka.ms/InstallAzureCLIDeb | bash
 
 # 5. Install Kubectl v1.30 (Official Kubernetes Repo)
 # Download the public signing key for the Kubernetes package repositories
+# Create the keyrings directory if it doesn't exist
+mkdir -p /etc/apt/keyrings
 curl -fsSL https://pkgs.k8s.io/core:/stable:/v1.30/deb/Release.key | gpg --dearmor -o /etc/apt/keyrings/kubernetes-apt-keyring.gpg
 # Add the Kubernetes apt repository
 echo 'deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] https://pkgs.k8s.io/core:/stable:/v1.30/deb/ /' | tee /etc/apt/sources.list.d/kubernetes.list
 apt-get update
 apt-get install -y kubectl
 
-echo "Installation Complete"
+# 6. Install Helm (Kubernetes Package Manager)
+# Downloads the official installer script and runs it
+curl https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3 | bash
+
+echo "Installation Complete: Git, Docker, Azure CLI, Kubectl, and Helm are ready." >> /var/log/vm-install.log
