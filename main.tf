@@ -71,3 +71,11 @@ resource "azurerm_role_assignment" "aks_to_acr" {
   role_definition_name = "AcrPull"
   principal_id         = module.aks.kubelet_identity_object_id
 }
+
+# Grant AKS permission to manage the Subnet
+resource "azurerm_role_assignment" "aks_network_contributor" {
+  scope                = module.networking.aks_subnet_id
+  role_definition_name = "Network Contributor"
+  principal_id         = module.aks.aks_identity_object_id 
+  # Note: You might need to add "output aks_identity_object_id" in your AKS module first
+}
