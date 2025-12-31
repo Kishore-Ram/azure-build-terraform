@@ -79,3 +79,32 @@ resource "azurerm_role_assignment" "aks_network_contributor" {
   principal_id         = module.aks.aks_identity_object_id 
   # Note: You might need to add "output aks_identity_object_id" in your AKS module first
 }
+
+# 1. Find the Node Resource Group (Where the PLS actually lives)
+#    Note: AKS creates a secondary RG named "MC_..."
+data "azurerm_resource_group" "node_rg" {
+  name = module.aks.node_resource_group
+}
+
+# 2. Look up the Private Link Service by its name "pls-aks-demo"
+data "azurerm_private_link_service" "pls" {
+  name                = "pls-aks-demo"
+  resource_group_name = data.azurerm_resource_group.node_rg.name
+}
+
+# 3. Create Front Door and connect it
+module "frontdoor" {
+  source = "./modules/frontdoor"
+
+  frontdoor_name = "fd-aks-demo-${random_id.rg_name.hex}" # Uses a random suffix
+  rg_name        = module.resource_group.rg_name
+  location       = module.resource_group.location
+  
+  # Pass the ID found by the data block above
+  pls_id         = data.azurerm_private_link_service.pls.id
+}
+
+# 4. Output the URL
+output "frontdoor_endpoint_url" {
+  value = module.frontdoor.frontdoor_url
+}
